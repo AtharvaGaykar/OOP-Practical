@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b, c;
+
+    cout << "Enter the number a: ";
+    cin >> a;
+    cout << "Enter the number b: ";
+    cin >> b;
+
+    try
+    {
+        if (b == 0)
+        {
+            throw b;
+        }
+        c = a / b;
+        cout << "\nDivision is: " << c << endl;
+    }
+    catch (int x)
+    {
+        cout << "Arithmetic error\n";
+        cout << "Cannot divide by " << x << endl;
+    }
+
+    cout << "After division operation." << endl;
+    return 0;
+}
