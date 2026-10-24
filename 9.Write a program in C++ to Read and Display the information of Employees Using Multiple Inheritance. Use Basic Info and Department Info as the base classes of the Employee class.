@@ -1,0 +1,83 @@
+#include <iostream>
+#include <string>
+#include <limits>
+using namespace std;
+
+class BasicInfo
+{
+private:
+    string name;
+    int age;
+
+public:
+    void acceptBasicInfo()
+    {
+        cout << "Enter name: ";
+        getline(cin, name);
+
+        cout << "Enter age: ";
+        while (!(cin >> age) || age <= 0)
+        {
+            cout << "Invalid age. Enter a positive number: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    void dispBasicInfo() const
+    {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+class DeptInfo
+{
+private:
+    string nameofdept;
+    string natureofwork;
+
+public:
+    void acceptDeptInfo()
+    {
+        cout << "Enter department: ";
+        getline(cin, nameofdept);
+
+        cout << "Enter nature of work: ";
+        getline(cin, natureofwork);
+    }
+
+    void dispDeptInfo() const
+    {
+        cout << "Department: " << nameofdept << endl;
+        cout << "Nature of work: " << natureofwork << endl;
+    }
+};
+
+class Employee : public BasicInfo, public DeptInfo
+{
+public:
+    void accept()
+    {
+        acceptBasicInfo();
+        acceptDeptInfo();
+    }
+
+    void display() const
+    {
+        dispBasicInfo();
+        dispDeptInfo();
+    }
+};
+
+int main()
+{
+    Employee e;
+
+    e.accept();
+    cout << "\n--- Employee Details ---\n";
+    e.display();
+
+    return 0;
+}
